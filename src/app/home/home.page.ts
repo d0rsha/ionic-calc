@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
 
 
       const megaSpeed = document.getElementById('super-speed');
-      console.log(megaSpeed['value']);
+      //console.log(megaSpeed['value']);
       this.loadScreen = true;
       
       let time: number = megaSpeed['value'];
