@@ -17,6 +17,7 @@
       </strong>
     </p>
   </div>
+  <!--
   <form id="d0rshb0tCalculator7000-form4">
     <ion-item id="d0rshb0tCalculator7000-checkbox1">
       <ion-label>
@@ -25,101 +26,108 @@
       <ion-toggle id="super-speed"></ion-toggle>
     </ion-item>
   </form>
-
+-->
 
 
   <ion-grid>
 
 
 
-
-      <ion-row>
-    <div *ngIf="!loadScreen; else spinner">
-      <form id="d0rshb0tCalculator7000-form1">
-        <ion-item id="d0rshb0tCalculator7000-input1">
+    <form>
+      <ion-item>
+        <ion-range min="1" max="100" step="1" pin="true" color="danger" id="super-speed">
+          <ion-icon slot="end" name="speedometer"></ion-icon>
+        </ion-range>
+      </ion-item>
+    </form>
+    <form id="d0rshb0tCalculator7000-form1">
+      <ion-item id="d0rshb0tCalculator7000-input1">
+        <div *ngIf="!loadScreen; else spinner">
           <ion-label text="">
           </ion-label>
+
+
           <ion-input type="text" placeholder="0" name="display" [(ngModel)]="display"></ion-input>
-        </ion-item>
-      </form>
-    </div>
-    <ng-template #spinner>
-      <ion-spinner name="dots"></ion-spinner>
-    </ng-template>
-  </ion-row>
+        </div>
 
-  
+        <ng-template #spinner>
+          <ion-spinner name="dots"></ion-spinner>
+        </ng-template>
+      </ion-item>
+    </form>
+
     <ion-row>
       <ion-col col-4>
-        <button id="c" (click)="onClick('C')" ion-button color="secondary">C</button>
+        <ion-button id="c" (click)="onClick('C')" ion-button color="secondary">C</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="%" (click)="onClick('%')" color="secondary">%</button>
+        <ion-button id="%" (click)="onClick('%')" color="secondary">%</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="/" (click)="onClick('/')" color="secondary">/</button>
+        <ion-button id="/" (click)="onClick('/')" color="secondary">/</ion-button>
       </ion-col>
       <ion-col col-4>
+        <ion-button id="<-" (click)="erase()" color="danger"><-</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <ion-button id="7" (click)="onClick('7')" color="dark">7</ion-button>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button id="8" (click)="onClick('8')" color="dark">8</ion-button>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button id="9" (click)="onClick('9')" color="dark">9</ion-button>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button id="*" (click)="onClick('*')" color="secondary">*</ion-button>
       </ion-col>
     </ion-row>
 
 
     <ion-row>
       <ion-col col-4>
-        <button id="7" (click)="onClick('7')" color="primary">7</button>
+        <ion-button id="6" (click)="onClick('6')" color="medium">6</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="8" (click)="onClick('8')" color="primary">8</button>
+        <ion-button id="5" (click)="onClick('5')" color="medium">5</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="9" (click)="onClick('9')" color="primary">9</button>
+        <ion-button id="4" (click)="onClick('4')" color="medium">4</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="*" (click)="onClick('*')" color="secondary">*</button>
-      </ion-col>
-    </ion-row>
-
-
-    <ion-row>
-      <ion-col col-4>
-        <button id="6" (click)="onClick('6')" color="primary">6</button>
-      </ion-col>
-      <ion-col col-4>
-        <button id="5" (click)="onClick('5')" color="primary">5</button>
-      </ion-col>
-      <ion-col col-4>
-        <button id="4" (click)="onClick('4')" color="primary">4</button>
-      </ion-col>
-      <ion-col col-4>
-        <button id="-" (click)="onClick('-')" color="secondary">-</button>
+        <ion-button id="-" (click)="onClick('-')" color="secondary">-</ion-button>
       </ion-col>
     </ion-row>
 
 
     <ion-row>
       <ion-col col-4>
-        <button id="3" (click)="onClick('3')" color="primary">3</button>
+        <ion-button id="3" (click)="onClick('3')" color="light">3</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="2" (click)="onClick('2')" color="primary">2</button>
+        <ion-button id="2" (click)="onClick('2')" color="light">2</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="1" (click)="onClick('1')" color="primary">1</button>
+        <ion-button id="1" (click)="onClick('1')" color="light">1</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="+" (click)="onClick('+')" color="secondary">+</button>
+        <ion-button id="+" (click)="onClick('+')" color="secondary">+</ion-button>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-4>
-        <button id="0" (click)="onClick('0')" color="primary">0</button>
+        <ion-button id="0" (click)="onClick('0')" color="light">0</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="." (click)="onClick('.')" color="primary">.</button>
+        <ion-button id="." (click)="onClick('.')" color="primary">.</ion-button>
       </ion-col>
       <ion-col col-4>
-        <button id="=" (click)="onClick('=')" color="secondary">=</button>
+        <ion-button id="=" (click)="onClick('=')" color="tertiary">=</ion-button>
       </ion-col>
       <ion-col col-4>
 
@@ -129,8 +137,4 @@
 
 
   </ion-grid>
-
-
-
-
 </ion-content>
