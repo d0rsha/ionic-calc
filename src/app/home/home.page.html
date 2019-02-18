@@ -1,12 +1,136 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Ionic Blank
+      d0rshb0t calculator 7000
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+
+<ion-content padding id="page1">
+
+  <div id="d0rshb0tCalculator7000-markdown1" class="show-list-numbers-and-dots">
+    <p style="color:#000000;">
+      D0rshbot
+      <strong>
+        calculator for insainly fast computations
+      </strong>
+    </p>
+  </div>
+  <form id="d0rshb0tCalculator7000-form4">
+    <ion-item id="d0rshb0tCalculator7000-checkbox1">
+      <ion-label>
+        Supah speed
+      </ion-label>
+      <ion-toggle id="super-speed"></ion-toggle>
+    </ion-item>
+  </form>
+
+
+
+  <ion-grid>
+
+
+
+
+      <ion-row>
+    <div *ngIf="!loadScreen; else spinner">
+      <form id="d0rshb0tCalculator7000-form1">
+        <ion-item id="d0rshb0tCalculator7000-input1">
+          <ion-label text="">
+          </ion-label>
+          <ion-input type="text" placeholder="0" name="display" [(ngModel)]="display"></ion-input>
+        </ion-item>
+      </form>
+    </div>
+    <ng-template #spinner>
+      <ion-spinner name="dots"></ion-spinner>
+    </ng-template>
+  </ion-row>
+
+  
+    <ion-row>
+      <ion-col col-4>
+        <button id="c" (click)="onClick('C')" ion-button color="secondary">C</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="%" (click)="onClick('%')" color="secondary">%</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="/" (click)="onClick('/')" color="secondary">/</button>
+      </ion-col>
+      <ion-col col-4>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-4>
+        <button id="7" (click)="onClick('7')" color="primary">7</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="8" (click)="onClick('8')" color="primary">8</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="9" (click)="onClick('9')" color="primary">9</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="*" (click)="onClick('*')" color="secondary">*</button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-4>
+        <button id="6" (click)="onClick('6')" color="primary">6</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="5" (click)="onClick('5')" color="primary">5</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="4" (click)="onClick('4')" color="primary">4</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="-" (click)="onClick('-')" color="secondary">-</button>
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col col-4>
+        <button id="3" (click)="onClick('3')" color="primary">3</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="2" (click)="onClick('2')" color="primary">2</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="1" (click)="onClick('1')" color="primary">1</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="+" (click)="onClick('+')" color="secondary">+</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4>
+        <button id="0" (click)="onClick('0')" color="primary">0</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="." (click)="onClick('.')" color="primary">.</button>
+      </ion-col>
+      <ion-col col-4>
+        <button id="=" (click)="onClick('=')" color="secondary">=</button>
+      </ion-col>
+      <ion-col col-4>
+
+
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+
+
+
 </ion-content>

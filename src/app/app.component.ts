@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { timer } from 'rxjs/observable/timer';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      timer(500).subscribe(() => this.splashScreen.hide());
     });
   }
 }

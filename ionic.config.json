@@ -1,6 +1,8 @@
 {
   "name": "ionic-calc",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "38faa7aa"
 }

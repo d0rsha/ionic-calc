@@ -1,1 +1,21 @@
 
+ion-spinner {
+    display: block;
+    margin: auto;
+}
+
+ ion-grid {
+    height: 80%;
+    border: 2px solid black;
+
+    ion-row {
+        height: 16%;
+        flex: 1;
+    ion-col button {
+           width: 100%;
+           height: 100%;
+        }
+    }
+}
+
+
