@@ -28,18 +28,16 @@
   </form>
 -->
 
-
+<div class="calculator">
   <ion-grid>
-
-
-
     <form>
       <ion-item>
-        <ion-range min="1" max="100" step="1" pin="true" color="danger" id="super-speed">
+        <ion-range min="1" max="100" step="1" pin="true" color="warning" id="super-speed">
           <ion-icon slot="end" name="speedometer"></ion-icon>
         </ion-range>
       </ion-item>
     </form>
+    <ion-row>
     <form id="d0rshb0tCalculator7000-form1">
       <ion-item id="d0rshb0tCalculator7000-input1">
         <div *ngIf="!loadScreen; else spinner">
@@ -55,7 +53,7 @@
         </ng-template>
       </ion-item>
     </form>
-
+  </ion-row>
     <ion-row>
       <ion-col col-4>
         <ion-button id="c" (click)="onClick('C')" ion-button color="secondary">C</ion-button>
@@ -134,7 +132,6 @@
 
       </ion-col>
     </ion-row>
-
-
   </ion-grid>
+</div>
 </ion-content>

@@ -5,10 +5,13 @@ ion-spinner {
 form {
     width: 100%;
 }
- ion-grid {
-    height: 85%;
-    border: 2px solid black;
 
+.calculator {
+    border: 2px solid black;
+    height: 85%;
+}
+ ion-grid {
+    height: 100%;
     ion-row {
         height: 14%;
         flex: 1;
