@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs/observable/timer';
 import { AppComponent } from '../app.component';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { AngularDelegate, NavController } from '@ionic/angular';
+import { AngularDelegate } from '@ionic/angular';
 
 import 'web-animations-js/web-animations.min';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -10,9 +10,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from '../app.module';
 
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { FlashbarService } from '../services/flashbar.service';
 
 platformBrowserDynamic().bootstrapModule(AppModule);
+
+const BOXES = 4;
 
 @Component({
   selector: 'app-home',
@@ -33,83 +34,99 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 export class HomePage implements OnInit {
 
   result = '';
-  display = ['', '', ''];
+  display = [];
   loadScreen = false;
   lastClick = 'C';
 
   active: boolean = false;
   message: string = '';
 
-  constructor(public navCtrl: NavController, private flashProvider: FlashbarService) { }
+  constructor() { }
 
   ngOnInit() {
     let megaSpeed = document.getElementById('super-speed');
     megaSpeed['value'] = 99;
   }
 
+
+  private calculate() {
+    this.loadScreen = true;
+
+    const megaSpeed = document.getElementById('super-speed');
+    let time: number = megaSpeed['value'];
+    timer((99 - time) * 18).subscribe(() => this.loadScreen = false);
+  }
+
+
+  private evaluate() {
+
+    this.calculate();
+
+    const lastIndex = this.result[this.result.length - 1];
+    if (this.result.length > 0 && !isNaN(Number(lastIndex))) {
+
+      this.result = eval(this.result);
+      let next = this.result;
+
+      if (this.display.length < BOXES) {
+        this.display.unshift(next);
+      } else {
+        for (let i = 0; i < this.display.length; i++) {
+          const tmp = this.display[i];
+          this.display[i] = next;
+          this.display[i] = next;
+          next = tmp;
+        }
+      }
+
+      this.lastClick = '=';
+    }
+    else if (this.lastClick === '=') {
+      this.show('Ok. Sure. ', 300);
+    }
+    else {
+      this.lastClick = 'operator';
+      this.show('Why you do dhis', 300);
+    }
+  }
+
+  private addClick(button) {
+    const currlastIndex = this.result[this.result.length - 1];
+    console.log('Last in string: ', currlastIndex);
+    console.log('Button clicked: ', button);
+
+    if (isNaN(Number(button))) {
+      if (isNaN(Number(currlastIndex))) {
+        this.show('You are wrong', 300);
+        button = '';
+      }
+    }
+
+    // Reset if last click was = && starting new calc
+    if (this.lastClick === '=' && !isNaN(Number(button))) {
+      this.result = '';
+    }
+
+    this.result += button;
+
+    // Set last click to operator or num
+    const lastIndex = this.result[this.result.length - 1];
+    if (isNaN(Number(lastIndex))) {
+      this.lastClick = 'operator';
+    } else {
+      this.lastClick = button;
+    }
+  }
+
+
   onClick(button) {
     if (button === 'C') {
       this.result = '';
       this.lastClick = 'C';
     } else if (button === '=') {
-      const megaSpeed = document.getElementById('super-speed');
-      // console.log(megaSpeed['value']);
-      this.loadScreen = true;
-
-      let time: number = megaSpeed['value'];
-      timer((99 - time) * 18).subscribe(() => this.loadScreen = false);
-      const lastIndex = this.result[this.result.length - 1];
-      if (this.result.length > 0 && !isNaN(Number(lastIndex))) {
-
-        this.result = eval(this.result);
-        this.result = this.result.toString();
-
-        let next = this.result;
-        for (let i = 0; i < this.display.length; i++) {
-          let tmp = this.display[i];
-          this.display[i] = next;
-          this.display[i] = next;
-          console.log(this.display);
-          next = tmp;
-        }
-        this.lastClick = '=';
-      } else {
-        this.lastClick = 'operator';
-        this.result = 'err';
-      }
-
+      this.evaluate();
     } else {
-      const currlastIndex = this.result[this.result.length - 1];
-
-      console.log('Last in string: ', currlastIndex);
-      console.log('Button clicked: ', button);
-
-      if (isNaN(Number(button))) {
-        if (isNaN(Number(currlastIndex))) {
-          const tmp = this.result;
-          this.result = 'err';
-          timer(500).subscribe(() => this.result = tmp);
-          this.show('Err', 2000);
-          button = '';
-        }
-      }
-
-      // Reset if last click was = && starting new calc
-      if (this.lastClick === '=' && !isNaN(Number(button))) {
-        this.result = '';
-      }
-
-      this.result += button;
-
-      // Set last click to operator or num
-      const lastIndex = this.result[this.result.length - 1];
-      if (isNaN(Number(lastIndex))) {
-        this.lastClick = 'operator';
-        console.log('OPERATOR');
-      } else {
-        this.lastClick = button;
-        console.log('NUBMER');
-      }
+      this.addClick(button);
     }
   }
 
@@ -121,7 +138,7 @@ export class HomePage implements OnInit {
 
 
 
-  
+
 
   show(message, duration) {
 
@@ -129,12 +146,12 @@ export class HomePage implements OnInit {
     this.active = true;
 
     setTimeout(() => {
-        this.active = false;
+      this.active = false;
     }, duration);
 
   }
 
   hide() {
-      this.active = false;
+    this.active = false;
   }
 }

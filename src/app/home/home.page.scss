@@ -31,12 +31,14 @@ form {
         ion-range {
             width: 100%;
         }
+        form ion-button {
+            width: 14%;
+        }
     }
 }
 
 
     .flash-container {
-
         position: relative;
         top: 0;
         width: 100%;
