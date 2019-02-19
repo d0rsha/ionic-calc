@@ -54,8 +54,12 @@
 
             <ion-input type="text" placeholder="0" name="display" [(ngModel)]="result"></ion-input>
 
+            <div (click)="hide()" *ngIf="active" class="flash-container">
 
-
+                <div class="message">
+                    {{message}}
+                </div>
+            </div>
 
             <ion-button *ngFor="let result of display">
               <ion-item>
@@ -149,5 +153,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    
+    
   </div>
 </ion-content>

@@ -2,12 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs/observable/timer';
 import { AppComponent } from '../app.component';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { AngularDelegate } from '@ionic/angular';
+import { AngularDelegate, NavController } from '@ionic/angular';
+
+import 'web-animations-js/web-animations.min';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from '../app.module';
+
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { FlashbarService } from '../services/flashbar.service';
+
+platformBrowserDynamic().bootstrapModule(AppModule);
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  animations: [
+    trigger('messageState', [
+      transition('void => *', [
+        style({ transform: 'translateY(-100%)' }),
+        animate('200ms ease-out')
+      ]),
+      transition('* => void', [
+        animate('200ms ease-in', style({ opacity: '0' }))
+      ])
+    ])
+  ]
 })
 export class HomePage implements OnInit {
 
@@ -16,7 +37,10 @@ export class HomePage implements OnInit {
   loadScreen = false;
   lastClick = 'C';
 
-  constructor() { }
+  active: boolean = false;
+  message: string = '';
+
+  constructor(public navCtrl: NavController, private flashProvider: FlashbarService) { }
 
   ngOnInit() {
     let megaSpeed = document.getElementById('super-speed');
@@ -65,6 +89,7 @@ export class HomePage implements OnInit {
           const tmp = this.result;
           this.result = 'err';
           timer(500).subscribe(() => this.result = tmp);
+          this.show('Err', 2000);
           button = '';
         }
       }
@@ -92,5 +117,24 @@ export class HomePage implements OnInit {
     if (this.result.length > 0) {
       this.result = this.result.substring(0, this.result.length - 1);
     }
+  }
+
+
+
+  
+
+  show(message, duration) {
+
+    this.message = message;
+    this.active = true;
+
+    setTimeout(() => {
+        this.active = false;
+    }, duration);
+
+  }
+
+  hide() {
+      this.active = false;
   }
 }
