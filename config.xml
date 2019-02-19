@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.avrethem.calco.master" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
+<widget id="com.avrethem.calco.master" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>CM-7000</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="calc@avrethem.com" href="http://avrethem.com/">Anders Vrethemn</author>
+    <author email="calc@avrethem.com" href="http://avrethem.com/">Anders Vrethem</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

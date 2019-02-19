@@ -72,7 +72,26 @@ export class HomePage implements OnInit {
 
     const megaSpeed = document.getElementById('super-speed');
     let time: number = megaSpeed['value'];
-    timer((99 - time) * 18).subscribe(() => this.loadScreen = false);
+    timer((99 - time) * 18).subscribe(() => {
+      this.loadScreen = false;
+      const lastIndex = this.result[this.result.length - 1];
+      if (this.result.length > 0 && !isNaN(Number(lastIndex))) {
+
+        this.result = eval(this.result);
+        let next = this.result;
+
+        if (this.display.length < BOXES) {
+          this.display.unshift(next);
+        } else {
+          for (let i = 0; i < this.display.length; i++) {
+            const tmp = this.display[i];
+            this.display[i] = next;
+            this.display[i] = next;
+            next = tmp;
+          }
+        }
+      }
+    });
   }
 
 
@@ -82,27 +101,10 @@ export class HomePage implements OnInit {
 
     const lastIndex = this.result[this.result.length - 1];
     if (this.result.length > 0 && !isNaN(Number(lastIndex))) {
-
-      this.result = eval(this.result);
-      let next = this.result;
-
-      if (this.display.length < BOXES) {
-        this.display.unshift(next);
-      } else {
-        for (let i = 0; i < this.display.length; i++) {
-          const tmp = this.display[i];
-          this.display[i] = next;
-          this.display[i] = next;
-          next = tmp;
-        }
-      }
-
       this.lastClick = '=';
-    }
-    else if (this.lastClick === '=') {
+    } else if (this.lastClick === '=') {
       this.show('Ok. Sure. ', 200);
-    }
-    else {
+    } else {
       this.lastClick = 'operator';
       this.show('Why you do dhis', 200);
     }
