@@ -82,11 +82,11 @@ export class HomePage implements OnInit {
       this.lastClick = '=';
     }
     else if (this.lastClick === '=') {
-      this.show('Ok. Sure. ', 300);
+      this.show('Ok. Sure. ', 200);
     }
     else {
       this.lastClick = 'operator';
-      this.show('Why you do dhis', 300);
+      this.show('Why you do dhis', 200);
     }
   }
 
@@ -97,7 +97,7 @@ export class HomePage implements OnInit {
 
     if (isNaN(Number(button))) {
       if (isNaN(Number(currlastIndex))) {
-        this.show('You are wrong', 300);
+        this.show('You are wrong', 200);
         button = '';
       }
     }
@@ -136,10 +136,6 @@ export class HomePage implements OnInit {
     }
   }
 
-
-
-
-
   show(message, duration) {
 
     this.message = message;
@@ -153,5 +149,9 @@ export class HomePage implements OnInit {
 
   hide() {
     this.active = false;
+  }
+
+  get(prevResult) {
+    this.result += prevResult;
   }
 }

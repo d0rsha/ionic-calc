@@ -56,12 +56,12 @@
 
             <div (click)="hide()" *ngIf="active" class="flash-container">
 
-                <div class="message" >
+                <div class="message">
                     {{message}}
                 </div>
             </div>
 
-            <ion-button *ngFor="let result of display" color="warning">
+            <ion-button *ngFor="let result of display" (click)="get(result)" color="warning">
               <ion-item>
                 <ion-label>{{ result }}
                 </ion-label>
