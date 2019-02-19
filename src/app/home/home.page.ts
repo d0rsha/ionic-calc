@@ -49,6 +49,24 @@ export class HomePage implements OnInit {
   }
 
 
+  onClick(button) {
+    if (button === 'C') {
+      this.result = '';
+      this.lastClick = 'C';
+    } else if (button === '=') {
+      this.evaluate();
+    } else if (button === 'Esc') {
+      this.show('Why you Click Esc?', 200);
+    } else {
+      this.addClick(button);
+    }
+  }
+
+  erase() {
+    if (this.result.length > 0) {
+      this.result = this.result.substring(0, this.result.length - 1);
+    }
+  }
   private calculate() {
     this.loadScreen = true;
 
@@ -118,23 +136,6 @@ export class HomePage implements OnInit {
     }
   }
 
-
-  onClick(button) {
-    if (button === 'C') {
-      this.result = '';
-      this.lastClick = 'C';
-    } else if (button === '=') {
-      this.evaluate();
-    } else {
-      this.addClick(button);
-    }
-  }
-
-  erase() {
-    if (this.result.length > 0) {
-      this.result = this.result.substring(0, this.result.length - 1);
-    }
-  }
 
   show(message, duration) {
 
