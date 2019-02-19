@@ -23,7 +23,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      timer(500).subscribe(() => this.splashScreen.hide());
+      // timer(500).subscribe(() => this.splashScreen.hide());
     });
   }
 }
